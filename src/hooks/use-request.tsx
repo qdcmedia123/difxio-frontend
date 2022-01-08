@@ -1,3 +1,4 @@
+// @ts-nocheck
 /*
   Below code can be used in following way 
   import useRequest from "components/Hooks/use-request";
@@ -31,12 +32,11 @@ const useRequest = ({ url, method, body = undefined}: UserRequestProps) => {
       try {
         setError(null);
         setIsLoading(true);
-        // @ts-ignore
         const response = await axios[method](url, { ...body, ...props });
        
         setData(response.data);
-      } catch (err) {
-        if(err.response.status === 401) {
+      } catch (err:unknown) {
+        if(err.statusCode === 401) {
           authUser({
             isAuthenticated: false,
             token: null

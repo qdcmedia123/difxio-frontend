@@ -45,7 +45,7 @@ const Login: React.FC = (props: LoginProps) => {
         } catch (err) {
             setError('Invalid username or password');
             console.log('Invalid username or password')
-            console.error(err.reson);
+            console.error(err);
         }
     }, [formData, authUser, props.history]);
     useEffect(() => {
