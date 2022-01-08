@@ -6,12 +6,14 @@ import Film from 'components/Film'
 import FilmById from 'components/Film/id/Index';
 import { Provider } from 'react-redux';
 import { store } from './state';
+import Header from 'components/Common/header';
 import './App.css';
 
 function App() {
   return (
     <Provider store={store}>
       <div>
+        <Header/>
         <Routes>
           <Route  path="/" element={<Login />} />
           <Route  path="/signup" element={<Signup />} />

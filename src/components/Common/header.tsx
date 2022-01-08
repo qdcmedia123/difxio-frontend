@@ -26,48 +26,51 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 const hrStyle = {
-      color: '#fff', 
-      textDecoration: 'none',
-      marginLeft: '15px'
-    };
+  color: '#fff',
+  textDecoration: 'none',
+  marginLeft: '15px'
+};
 
 type headeProps = any;
 
-export default function HeaderAppBar(props:headeProps) {
+export default function HeaderAppBar(props: headeProps) {
   const classes = useStyles();
-  const logout = async() => {
+  const logout = async () => {
     // Send the http request to remove the session 
     try {
-       await axios.post(`${baseURI}/api/users/signout`, {});
-       window.location.replace('/#/login')
+      await axios.post(`${baseURI}/api/users/signout`, {});
+      window.location.replace('/#/login')
     } catch (err) {
       console.error(err);
     }
-    
-    
+
+
   }
   return (
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
           <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-            
+
           </IconButton>
           <Typography variant="h6" className={classes.title}>
-          <Link href="/#/dashboard" style = {{color: '#fff'}}>
-          Dashboard
-         </Link>
-          
-          </Typography>
-          <Link href="/#/top-plants" style = {hrStyle}>
-           Top Plants
-         </Link>
-         <Link href="/#/states-plants-mwh-aggregation" style = {hrStyle}>
-           States MWH
-         </Link>
+            <Link href="/#/dashboard" style={{ color: '#fff' }}>
+              Dashboard
+            </Link>
 
-          <Button color="inherit" onClick = {() => logout()}>Logout</Button>
-          
+          </Typography>
+          <Link href="/films" style={hrStyle}>
+            Film
+          </Link>
+          <Link href="/login" style={hrStyle}>
+            Login
+          </Link>
+          <Link href="/signup" style={hrStyle}>
+            Signup
+          </Link>
+
+          <Button color="inherit" onClick={() => logout()}>Logot</Button>
+
         </Toolbar>
       </AppBar>
     </div>

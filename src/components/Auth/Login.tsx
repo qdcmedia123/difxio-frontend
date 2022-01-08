@@ -1,13 +1,11 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { FormControl, InputLabel, Input, FormGroup, Button } from '@material-ui/core';
-import { useState } from 'react';
 import Alert from '@material-ui/lab/Alert';
 import { useCallback } from 'react';
 import { baseURI } from 'config/networks';
 import { useTypedSelector } from 'hooks/use-typed-selector';
 import { useActions } from 'hooks/use-actions';
 import axios from 'axios';
-import { useEffect } from 'react';
 import './Login.scss';
 type LoginProps = any;
 
