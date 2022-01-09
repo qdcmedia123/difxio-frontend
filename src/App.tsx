@@ -6,7 +6,7 @@ import FilmById from 'components/Film/Film.show';
 import Cookies from 'js-cookie';
 import React from 'react';
 import { Provider } from 'react-redux';
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 import { ActionTypes, store } from './state';
 import './scss/main.scss';
 import './App.scss';
@@ -32,6 +32,7 @@ function App() {
         <Header />
         <div className="container">
           <Routes>
+            <Route path = "/" element={<Navigate to ="/films"/>} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/films" element={<Film />} />

@@ -5,6 +5,8 @@ import axios from 'axios';
 import { getError } from 'utils/error';
 import AddNewCar from 'components/Common/AddNewFilm';
 import './film.scss';
+import { useTypedSelector } from 'hooks/use-typed-selector';
+
 axios.defaults.withCredentials = true;
 
 const FilmIndex = () => {
@@ -13,7 +15,9 @@ const FilmIndex = () => {
     const [films, setFilms] = useState([]);
     const [open, setOpen] = useState<boolean>(false);
     const [errors, setErrors] = useState<object>({});
-    const [genre, setGenre] = useState<string[]>([]);
+    const state = useTypedSelector((state) => state);
+    const { auth: { isAuthenticated } } = state;
+
 
     const [film, setFilm] = useState<{ genre: string[] }>({ genre: [] });
 
@@ -37,7 +41,6 @@ const FilmIndex = () => {
 
     const onChangeHanlder = (e: any) => {
         const { name, value } = e.target;
-
         setFilm({ ...film, [name]: value });
     }
 
@@ -49,7 +52,6 @@ const FilmIndex = () => {
             const res = await axios.post(`${baseURI}/api/films`, film);
             console.log(res);
         } catch (err: any) {
-            //setError(err);
             let { errors } = err.response.data;
             let normolizedErr: any = {};
             errors.forEach((err: any) => {
@@ -106,12 +108,12 @@ const FilmIndex = () => {
                 />
             )}
 
-            <div className="options">
+            {isAuthenticated && <div className="options">
                 <div className="nav" onClick={() => setOpen(true)}>
                     Add New Film
                 </div>
 
-            </div>
+            </div>}
             {error && <div>{error}</div>}
             <div className="film-list">
                 {!loading && films.length > 0 && <FileList films={films} />}

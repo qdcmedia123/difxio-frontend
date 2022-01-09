@@ -6,8 +6,9 @@ import { baseURI } from 'config/networks';
 import { useTypedSelector } from 'hooks/use-typed-selector';
 import { useActions } from 'hooks/use-actions';
 import axios from 'axios';
-import './Login.scss';
 import { Navigate } from 'react-router-dom';
+import './Login.scss';
+
 type LoginProps = any;
 
 const Signin: React.FC = (props: LoginProps) => {
@@ -54,7 +55,7 @@ const Signin: React.FC = (props: LoginProps) => {
     }, [auth]);
 
     if (isAuthenticated) {
-        return <Navigate to="/film" />
+        return <Navigate to="/films" />
     }
     return (
         <div className="container-sm">
@@ -85,6 +86,7 @@ const Signin: React.FC = (props: LoginProps) => {
             </FormGroup>}
             <FormGroup style={{ marginTop: '2em' }}>
                 <Button
+                style={{backgroundColor:'rgb(34, 49, 63)'}}
                     onClick={() => submitForm()}
                     type="submit" variant="contained" color="primary">
                     Signin

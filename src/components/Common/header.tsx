@@ -9,6 +9,8 @@ import axios from 'axios';
 import { baseURI } from 'config/networks';
 import Link from '@material-ui/core/Link';
 import { useTypedSelector } from 'hooks/use-typed-selector';
+
+
 axios.defaults.withCredentials = true;
 
 
@@ -41,7 +43,6 @@ export default function HeaderAppBar(props: headeProps) {
 
   const classes = useStyles();
   const logout = async () => {
-    // Send the http request to remove the session 
     try {
       await axios.post(`${baseURI}/api/users/signout`, {});
       window.location.replace('/login')

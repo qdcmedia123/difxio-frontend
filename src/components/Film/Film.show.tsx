@@ -4,8 +4,12 @@ import axios from 'axios';
 import { baseURI } from 'config/networks';
 import { useParams } from 'react-router-dom';
 import FilmList from './Film.list';
+import { useTypedSelector } from 'hooks/use-typed-selector';
 import './film.scss';
 import './comments.scss';
+
+
+
 axios.defaults.withCredentials = true;
 
 const FilmShow = () => {
@@ -14,6 +18,10 @@ const FilmShow = () => {
     const [film, setFilm] = useState([]);
     const [comments, setComments] = useState<any[]>([]);
     const [comment, setComment] = useState<null | string>(null);
+
+    const state = useTypedSelector((state) => state);
+    const { auth: { isAuthenticated } } = state;
+
     const { id } = useParams();
     useEffect(() => {
         const fetchFilm = async () => {
@@ -37,10 +45,10 @@ const FilmShow = () => {
         fetchFilm();
     }, [id]);
 
-    const commentHandler = async (e:any) => {
+    const commentHandler = async (e: any) => {
         e.preventDefault();
         try {
-            const save = await axios.post(`${baseURI}/api/comments`, {
+            await axios.post(`${baseURI}/api/comments`, {
                 film_id: id,
                 comment: comment
             });
@@ -64,12 +72,12 @@ const FilmShow = () => {
                     <FilmList films={[...film]} details={true} />
                 </div>}
             </div>
-            <div className="write-comment">
+            {isAuthenticated && <div className="write-comment">
                 <form onSubmit={commentHandler}>
                     <textarea name="" id="" cols={10} rows={10} onChange={onChange}>{comment}</textarea>
                     <button type="submit" className='btn btn--primary'>Submit</button>
                 </form>
-            </div>
+            </div>}
 
             <div className="comments">
                 {!loading && comments.length > 0 && comments.map(comment => <div className="row" key={comment.id}>

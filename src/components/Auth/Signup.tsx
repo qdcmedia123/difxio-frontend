@@ -15,7 +15,9 @@ const Signup = (props: any) => {
     const { authUser } = useActions();
     const [formData, setFormData] = useState({
         email: '',
-        password: ''
+        password: '',
+        first_name: '',
+        last_name: ''
     });
 
     const onChagne = (e: any) => {
@@ -54,14 +56,41 @@ const Signup = (props: any) => {
 
     return (
         <div className="container-sm">
-            <FormGroup>
+
+
+<FormGroup style={{ marginTop: '2em' }}>
+                <FormControl>
+                    <InputLabel htmlFor="first_name">First Name</InputLabel>
+                    <Input type="text"
+                        name="first_name"
+                        id="first_name"
+                        value={formData.first_name || ''}
+                        onChange={onChagne} 
+                        required/>
+                </FormControl>
+            </FormGroup>
+
+            <FormGroup style={{ marginTop: '2em' }}>
+                <FormControl>
+                    <InputLabel htmlFor="last_name">Last Name</InputLabel>
+                    <Input type="text"
+                        name="last_name"
+                        id="last_name"
+                        value={formData.last_name || ''}
+                        onChange={onChagne} 
+                        required/>
+                </FormControl>
+            </FormGroup>
+
+            <FormGroup style={{ marginTop: '2em' }}>
                 <FormControl>
                     <InputLabel htmlFor="email">Email address</InputLabel>
                     <Input type="email"
                         name="email"
                         id="email"
                         value={formData.email || ''}
-                        onChange={onChagne} />
+                        onChange={onChagne} 
+                        required/>
                 </FormControl>
             </FormGroup>
             <FormGroup style={{ marginTop: '2em' }}>
@@ -71,7 +100,8 @@ const Signup = (props: any) => {
                         name="password"
                         value={formData.password || ''}
                         onChange={onChagne}
-                        type="password" id="my-input" aria-describedby="my-helper-text" />
+                        type="password" id="my-input" aria-describedby="my-helper-text"
+                        required/>
                 </FormControl>
             </FormGroup>
             {error && <FormGroup style={{ marginTop: '2em' }}>
@@ -81,6 +111,7 @@ const Signup = (props: any) => {
             </FormGroup>}
             <FormGroup style={{ marginTop: '2em' }}>
                 <Button
+                style={{backgroundColor:'rgb(34, 49, 63)'}}
                     onClick={() => submitForm()}
                     type="submit" variant="contained" color="primary">
                     Signup
