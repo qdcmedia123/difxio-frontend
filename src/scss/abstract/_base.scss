@@ -1,0 +1,40 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+#root,
+html,
+body {
+  height: 100%;
+}
+body {
+  font-family: "Montserrat", sans-serif;
+}
+html {
+  font-size: 100%;
+}
+body {
+  font-family: "Montserrat", sans-serif;
+  box-sizing: border-box;
+  background-color: #ffff;
+}
+a {
+  text-decoration: none;
+}
+input::placeholder {
+  font-family: "Montserrat", sans-serif;
+}
+input:focus,
+textarea {
+  outline: none;
+}
+li {
+  list-style: none;
+}
+.container {
+  max-width: 70.5rem;
+  margin: 0 auto;
+}

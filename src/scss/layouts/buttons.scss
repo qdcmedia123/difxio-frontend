@@ -1,0 +1,18 @@
+.btn{
+    border:none;
+    border-radius: 3px;
+    padding: .8rem 2rem;
+    cursor: pointer;
+    &--primary {
+        background-color: $dark-bg-txt; 
+        color: $light-text;
+    }
+    &--secoundary {
+        background-color: transparent;
+        border: 1px solid $dark-bg-txt;
+    }
+    &--danger {
+        background-color: #bf4f51;
+        color: #fff;
+    }
+}

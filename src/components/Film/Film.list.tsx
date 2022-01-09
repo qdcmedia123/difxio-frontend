@@ -1,4 +1,5 @@
 import React from 'react';
+import Rating from '@mui/material/Rating';
 
 interface InterFilm {
     id: number | string;
@@ -20,7 +21,7 @@ interface FilmListInterface {
 }
 
 const FilmList: React.FC<FilmListInterface> = ({ films }: FilmListInterface) => {
-    return <>{films.map((film) => (
+    return <div className="list__films">{films.map((film) => (
         <div key={film.id} className="row">
             <div className="col img">
                 <img src={film.photo} alt="" className="carImg" />
@@ -28,33 +29,27 @@ const FilmList: React.FC<FilmListInterface> = ({ films }: FilmListInterface) => 
             <div className="col details">
                 <div className="title">{film.name}</div>
                 <div className="btn__container">
-                    <button>
-                        <i className="fa fa-user"></i>
-                        {film.description}
-                    </button>
-                    <button>
-                        <i className="fa fa-film"></i>
-                        {film.realease_date}
-                    </button>
-                    <button>
-                        <i className="fa fa-gas-pump"> {film.rating}</i>
-                    </button>
+                    <Rating
+                        name="simple-controlled"
+                        value={film.rating}
+                        readOnly
+                    />
                 </div>
                 <div className="descriptions">
                     <div className="d_title">Description</div>
                     <p>{film.description}</p>
-                    <p>Brand: {film.country}</p>
-                    <p>Model: {film.genre.join(', ')}</p>
+                    <p>Country: {film.country}</p>
+                    <p>Genre: {film.genre.join(', ')}</p>
+                    <p>Release date {film.realease_date}</p>
                 </div>
             </div>
             <div className="col actions">
                 <div className="price">$ {film.ticket_price}</div>
-                <button className="btn btn--primary">Book Now</button>
-                <span>Delete film</span>
-                <span>Update film</span>
+                <a className="btn btn--primary" href={`/films/${film.id}`}>Details</a>
+
             </div>
         </div>
-    ))}</>
+    ))}</div>
 }
 
 

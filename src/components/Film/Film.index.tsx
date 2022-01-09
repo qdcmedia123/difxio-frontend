@@ -32,8 +32,9 @@ const FilmIndex = () => {
             <div className="sec-nav">
                 Create
             </div>
+            {error && <div>{error}</div>}
             <div className="film-list">
-                {films.length > 0 && <FileList films={films}/>}
+                {!loading && films.length > 0 && <FileList films={films}/>}
             </div>
         </div>
     );

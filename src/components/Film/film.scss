@@ -1,5 +1,118 @@
+@import "../../scss/abstract/variables";
+@import "../../scss/abstract/function";
+@import "../../scss/abstract/base";
 .sec-nav {
     padding: 1rem 1rem;
     display: flex;
     justify-content: flex-end;
 }
+
+.list__films {
+    background-color: rgba(163, 163, 163, 0.2);
+    padding: 0.6rem;
+    margin-top: 2rem;
+    .row {
+      &:not(:last-child) {
+        margin-bottom: 1rem;
+      }
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(pxToRem(206), 1fr));
+      grid-gap: 2rem;
+      padding: 2rem 1rem;
+      background-color: #fff;
+      .col {
+        display: flex !important;
+        // align-items: center !important;
+        img {
+          width: 100%;
+          max-height: pxToRem(250);
+        }
+      }
+      .details {
+        display: flex;
+        flex-direction: column;
+        row-gap: 1rem;
+        justify-content: space-evenly;
+        .title {
+          font-size: 1.6rem;
+          color: $dark-bg-txt;
+          width: 100%;
+        }
+        .btn__container {
+          display: flex;
+          column-gap: 1rem;
+          button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 5px;
+            padding: 0.3rem 0.6rem;
+            border: 1px solid $grey-text;
+            display: flex;
+            column-gap: 0.5rem;
+            background-color: transparent;
+            font-weight: $default-font-family;
+          }
+        }
+        .descriptions {
+          display: flex;
+          flex-direction: column;
+          row-gap: 1rem;
+          .d_title {
+            font-size: 1rem;
+          }
+          p {
+            font-size: 0.8rem;
+            color: $grey-text;
+          }
+        }
+      }
+      .actions {
+        display: flex;
+        justify-content: flex-end;
+        flex-direction: column;
+        row-gap: 1rem;
+        align-items: center;
+        position: relative;
+        &::after {
+          content: "";
+          position: absolute;
+          left: 0px;
+          top: 40%;
+          height: 60%;
+          border-left: 1px solid $dark-bg-txt;
+        }
+        button {
+          border-radius: 0;
+        }
+        .price {
+          color: $green-price;
+          font-size: 2.2rem;
+          font-weight: 600;
+        }
+        span {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+  .options {
+    text-align: right;
+    padding: 1rem 0 0;
+    display: flex;
+    justify-content: flex-end;
+  
+    .nav {
+      cursor: pointer;
+    }
+  }
+  .filters {
+    display: flex;
+    justify-content: flex-end;
+    column-gap: 1rem;
+    padding: 1rem 0;
+    & > * {
+      max-width: 15rem;
+    }
+  }
+  

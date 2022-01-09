@@ -8,7 +8,9 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { Route, Routes } from "react-router-dom";
 import { ActionTypes, store } from './state';
+import './scss/main.scss';
 import './App.scss';
+
 
 const expressSessCookie = Cookies.get('session');
 
