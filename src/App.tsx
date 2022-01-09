@@ -1,10 +1,10 @@
+import React from 'react';
 import Login from 'components/Auth/Signin';
 import Signup from 'components/Auth/Signup';
 import Header from 'components/Common/header';
 import Film from 'components/Film/Film.index';
 import FilmById from 'components/Film/Film.show';
 import Cookies from 'js-cookie';
-import React from 'react';
 import { Provider } from 'react-redux';
 import { Route, Routes, Navigate } from "react-router-dom";
 import { ActionTypes, store } from './state';

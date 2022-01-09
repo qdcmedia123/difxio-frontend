@@ -85,8 +85,7 @@ const FilmShow = () => {
                         <img src="https://gravatar.com/avatar/a0829573c28b7d7f9aedc82ec6240786?s=400&d=robohash&r=x" alt="" />
                     </div>
                     <div className="col">
-                        <div className="user-id"> User ID: {comment.user_id}</div>
-                        <div className="name">Test User </div>
+                        <div className="user-id"> <strong>{comment.name}</strong></div>
                         <div className="text">
                             {comment.comment}
                         </div>
