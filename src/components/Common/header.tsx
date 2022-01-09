@@ -29,7 +29,8 @@ const useStyles = makeStyles((theme: Theme) =>
 const hrStyle = {
   color: '#fff',
   textDecoration: 'none',
-  marginLeft: '15px'
+  marginLeft: '15px',
+  
 };
 
 type headeProps = any;
@@ -50,7 +51,7 @@ export default function HeaderAppBar(props: headeProps) {
   }
   return (
     <div className={classes.root}>
-      <AppBar position="static">
+      <AppBar position="static" style={{backgroundColor:'#22313f'}}>
         <Toolbar>
           <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
 
