@@ -17,10 +17,11 @@ interface InterFilm {
 }
 
 interface FilmListInterface {
-    films: InterFilm[]
+    films: InterFilm[],
+    details?:boolean
 }
 
-const FilmList: React.FC<FilmListInterface> = ({ films }: FilmListInterface) => {
+const FilmList: React.FC<FilmListInterface> = ({ films, details }: FilmListInterface) => {
     return <div className="list__films">{films.map((film) => (
         <div key={film.id} className="row">
             <div className="col img">
@@ -45,7 +46,7 @@ const FilmList: React.FC<FilmListInterface> = ({ films }: FilmListInterface) => 
             </div>
             <div className="col actions">
                 <div className="price">$ {film.ticket_price}</div>
-                <a className="btn btn--primary" href={`/films/${film.id}`}>Details</a>
+                {!details && <a className="btn btn--primary" href={`/films/${film.id}`}>Details</a>}
 
             </div>
         </div>

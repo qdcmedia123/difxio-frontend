@@ -34,8 +34,8 @@ function App() {
           <Routes>
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
-            <Route path="/film" element={<Film />} />
-            <Route path="/film/:id" element={<FilmById />} />
+            <Route path="/films" element={<Film />} />
+            <Route path="/films/:id" element={<FilmById />} />
           </Routes>
         </div>
 
