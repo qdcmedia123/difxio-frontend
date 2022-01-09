@@ -1,12 +1,12 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { FormControl, InputLabel, Input, FormGroup, Button } from '@material-ui/core';
-import { useActions } from 'hooks/use-actions';
+import { Button, FormControl, FormGroup, Input, InputLabel } from '@material-ui/core';
 import Alert from '@material-ui/lab/Alert';
-import { baseURI } from 'config/networks';
 import axios from 'axios';
-import { getError, errObjToStr } from 'utils/error';
+import { baseURI } from 'config/networks';
+import { useActions } from 'hooks/use-actions';
 import { useTypedSelector } from 'hooks/use-typed-selector';
+import React, { useCallback, useState } from 'react';
 import { Navigate } from "react-router-dom";
+import { errObjToStr } from 'utils/error';
 
 const Signup = (props: any) => {
     const [error, setError] = useState<null | string>(null);
