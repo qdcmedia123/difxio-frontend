@@ -8,6 +8,7 @@ import IconButton from '@material-ui/core/IconButton';
 import axios from 'axios';
 import { baseURI } from 'config/networks';
 import Link from '@material-ui/core/Link';
+import { useTypedSelector } from 'hooks/use-typed-selector';
 axios.defaults.withCredentials = true;
 
 
@@ -34,17 +35,18 @@ const hrStyle = {
 type headeProps = any;
 
 export default function HeaderAppBar(props: headeProps) {
+  const state = useTypedSelector((state) => state);
+  const { auth: { isAuthenticated } } = state;
+
   const classes = useStyles();
   const logout = async () => {
     // Send the http request to remove the session 
     try {
       await axios.post(`${baseURI}/api/users/signout`, {});
-      window.location.replace('/#/login')
+      window.location.replace('/login')
     } catch (err) {
       console.error(err);
     }
-
-
   }
   return (
     <div className={classes.root}>
@@ -62,14 +64,21 @@ export default function HeaderAppBar(props: headeProps) {
           <Link href="/films" style={hrStyle}>
             Film
           </Link>
-          <Link href="/login" style={hrStyle}>
-            Login
-          </Link>
+         
+
+
           <Link href="/signup" style={hrStyle}>
             Signup
           </Link>
+          {isAuthenticated ? <Button color="inherit" onClick={() => logout()}>
+            <Typography>
+            Logout
+            </Typography>
+            </Button> : <Link href="/login" style={hrStyle}>
+            Login
+          </Link>}
 
-          <Button color="inherit" onClick={() => logout()}>Logot</Button>
+
 
         </Toolbar>
       </AppBar>

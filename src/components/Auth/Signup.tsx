@@ -2,9 +2,16 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { FormControl, InputLabel, Input, FormGroup, Button } from '@material-ui/core';
 import { useActions } from 'hooks/use-actions';
 import Alert from '@material-ui/lab/Alert';
+import { baseURI } from 'config/networks';
+import axios from 'axios';
+import { getError, errObjToStr } from 'utils/error';
+import { useTypedSelector } from 'hooks/use-typed-selector';
+import { Navigate } from "react-router-dom";
 
-const Signup = () => {
+const Signup = (props: any) => {
     const [error, setError] = useState<null | string>(null);
+    const state = useTypedSelector((state) => state);
+    const { auth: { isAuthenticated } } = state;
     const { authUser } = useActions();
     const [formData, setFormData] = useState({
         email: '',
@@ -16,9 +23,35 @@ const Signup = () => {
         setFormData({ ...formData, [name]: value });
     }
 
-    const submitForm = () => {
+    const submitForm = useCallback(async () => {
+        setError('')
+        try {
+            const response = await axios.post(`${baseURI}/api/users/signup`, formData,
+                {
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+            console.log('response.status', response.status)
+            if (response.status === 201) {
+                authUser({
+                    isAuthenticated: true,
+                    token: response.data
+                });
+                <Navigate to="/film" />
+            }
+        } catch (err: any) {
+            const { errors } = err.response.data;
+            const getError = errObjToStr(errors);
+            setError(getError);
 
+        }
+    }, [formData, authUser]);
+
+    if (isAuthenticated) {
+        return <Navigate to="/film" />
     }
+
     return (
         <div className="container-sm">
             <FormGroup>
@@ -50,7 +83,7 @@ const Signup = () => {
                 <Button
                     onClick={() => submitForm()}
                     type="submit" variant="contained" color="primary">
-                    Login
+                    Signup
                 </Button>
             </FormGroup>
         </div>

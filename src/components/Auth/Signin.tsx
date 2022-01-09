@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { FormControl, InputLabel, Input, FormGroup, Button } from '@material-ui/core';
 import Alert from '@material-ui/lab/Alert';
 import { useCallback } from 'react';
@@ -7,10 +7,15 @@ import { useTypedSelector } from 'hooks/use-typed-selector';
 import { useActions } from 'hooks/use-actions';
 import axios from 'axios';
 import './Login.scss';
+import { Navigate } from 'react-router-dom';
 type LoginProps = any;
 
-const Login: React.FC = (props: LoginProps) => {
+const Signin: React.FC = (props: LoginProps) => {
     const [error, setError] = useState<null | string>(null);
+    const state = useTypedSelector((state) => state);
+    const { auth: { isAuthenticated } } = state;
+
+
     const { authUser } = useActions();
     const [formData, setFormData] = useState({
         email: '',
@@ -33,21 +38,24 @@ const Login: React.FC = (props: LoginProps) => {
                     },
                     withCredentials: true
                 });
-            if (response.status === 200) {
+            if (response.status === 201) {
                 authUser({
                     isAuthenticated: true,
-                    token: response.data.jwt
+                    token: response.data.token
                 });
-                props.history.push('/dashboard');
             }
         } catch (err) {
             setError('Invalid username or password');
             console.log('Invalid username or password')
             console.error(err);
         }
-    }, [formData, authUser, props.history]);
+    }, [formData, authUser]);
     useEffect(() => {
-    }, [auth])
+    }, [auth]);
+
+    if (isAuthenticated) {
+        return <Navigate to="/film" />
+    }
     return (
         <div className="container-sm">
             <FormGroup>
@@ -79,10 +87,10 @@ const Login: React.FC = (props: LoginProps) => {
                 <Button
                     onClick={() => submitForm()}
                     type="submit" variant="contained" color="primary">
-                    Login
+                    Signin
                 </Button>
             </FormGroup>
         </div>
     );
 }
-export default Login;
+export default Signin;
