@@ -4,6 +4,7 @@ import Signup from 'components/Auth/Signup';
 import Header from 'components/Common/header';
 import Film from 'components/Film/Film.index';
 import FilmById from 'components/Film/Film.show';
+import FilmCreate from 'components/Film/Film.createt';
 import Cookies from 'js-cookie';
 import { Provider } from 'react-redux';
 import { Route, Routes, Navigate } from "react-router-dom";
@@ -36,6 +37,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/films" element={<Film />} />
+            <Route path="/films/create" element={<FilmCreate/>} />
             <Route path="/films/:id" element={<FilmById />} />
           </Routes>
         </div>

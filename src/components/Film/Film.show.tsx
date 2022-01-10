@@ -52,7 +52,8 @@ const FilmShow = () => {
                 film_id: id,
                 comment: comment
             });
-
+         alert('Comment sucessfully added');
+         window.location.reload();
         } catch (err) {
             console.log(err);
         }

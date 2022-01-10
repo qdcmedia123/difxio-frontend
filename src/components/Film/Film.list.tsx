@@ -36,13 +36,14 @@ const FilmList: React.FC<FilmListInterface> = ({ films, details }: FilmListInter
                         readOnly
                     />
                 </div>
-                <div className="descriptions">
+
+                {details && <div className="descriptions">
                     <div className="d_title">Description</div>
                     <p>{film.description}</p>
                     <p>Country: {film.country}</p>
                     <p>Genre: {film.genre.join(', ')}</p>
                     <p>Release date {film.realease_date}</p>
-                </div>
+                </div>}
             </div>
             <div className="col actions">
                 <div className="price">$ {film.ticket_price}</div>

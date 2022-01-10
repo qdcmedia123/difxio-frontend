@@ -40,7 +40,7 @@ const Signup = (props: any) => {
                     isAuthenticated: true,
                     token: response.data
                 });
-                <Navigate to="/film" />
+                <Navigate to="/films" />
             }
         } catch (err: any) {
             const { errors } = err.response.data;
@@ -51,7 +51,7 @@ const Signup = (props: any) => {
     }, [formData, authUser]);
 
     if (isAuthenticated) {
-        return <Navigate to="/film" />
+        return <Navigate to="/films" />
     }
 
     return (

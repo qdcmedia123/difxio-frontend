@@ -11,15 +11,16 @@ const AddNewCar = ({
   errors,
   film,
   checkboxHandler,
+  isPopup
 }) => {
   return (
     <section className="add__new__car">
       <div className="model">
-        <div className="title">Add New Car</div>
+        <div className="title">Add New Film</div>
         <div className="content">
           <form onSubmit={submitHandler}>
             <div className="form-group">
-              <label htmlFor="title">Title</label>
+              <label htmlFor="title">Name</label>
               <input
                 type="text"
                 id="name"
@@ -38,7 +39,7 @@ const AddNewCar = ({
               <input
                 type="number"
                 id="ticket_price"
-                placeholder="ticket_price"
+                placeholder="ticket price"
                 name="ticket_price"
                 onChange={onChangeHanlder}
                 value={film.ticket_price || ""}
@@ -50,11 +51,11 @@ const AddNewCar = ({
 
             <div className="f-col">
               <div className="col">
-                <label htmlFor="ticket_price">realease_date</label>
+                <label htmlFor="ticket_price">Realease Date</label>
                 <input
                   type="date"
                   id="realease_date"
-                  placeholder="realease_date"
+                  placeholder="realease date"
                   name="realease_date"
                   onChange={onChangeHanlder}
                   value={film.realease_date || ""}
@@ -97,7 +98,7 @@ const AddNewCar = ({
                 />
               </div>
               <div className="col flex">
-                <label htmlFor="thriller">thriller</label>
+                <label htmlFor="thriller">Thriller</label>
                 <input
                   type="checkbox"
                   name="genre"
@@ -138,7 +139,7 @@ const AddNewCar = ({
             </div>
 
             <div className="form-control">
-              <label htmlFor="ticket_price">country</label>
+              <label htmlFor="ticket_price">Country</label>
               <input
                 type="text"
                 id="country"
@@ -153,7 +154,7 @@ const AddNewCar = ({
             </div>
 
             <div className="form-control">
-              <label htmlFor="ticket_price">description</label>
+              <label htmlFor="description">Description</label>
               <textarea
                 id="description"
                 placeholder="description"
@@ -168,9 +169,9 @@ const AddNewCar = ({
 
             <div className="form-group">
               <div className="actions-btn">
-                <button className="btn btn--secoundary" onClick={cancelHanlder}>
+                {isPopup && <button className="btn btn--secoundary" onClick={cancelHanlder}>
                   Cancel
-                </button>
+                </button>}
                 <button type="submit" className="btn btn--primary">
                   Submit
                 </button>
@@ -183,7 +184,8 @@ const AddNewCar = ({
   );
 };
 AddNewCar.propTypes = {
-  setOpen: PropTypes.func.isRequired,
+  isPopup: PropTypes.bool,
+  setOpen: PropTypes.any,
   onChangeHanlder: PropTypes.func.isRequired,
   cancelHanlder: PropTypes.func.isRequired,
   submitHandler: PropTypes.func.isRequired,
